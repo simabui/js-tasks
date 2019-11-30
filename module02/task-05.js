@@ -1,9 +1,9 @@
 "use strict";
 
-const text = "Get best sale offers now!";
-const textSecond = "Latest technology news";
-const textThird = "JavaScript weekly newsletter";
-const textFourth = "[SPAM] How to earn fast money?";
+const TEXT = "Get best sale offers now!";
+const TEXTSECOND = "Latest technology news";
+const TEXTTHRID = "JavaScript weekly newsletter";
+const TEXTFOURTH = "[SPAM] How to earn fast money?";
 
 const checkForSpam = string => {
   const word = string.toLowerCase();
@@ -11,7 +11,7 @@ const checkForSpam = string => {
   return word.includes("sale") || word.includes("spam");
 };
 
-document.write(`${checkForSpam(text)}\n`); //true
-document.write(`${checkForSpam(textSecond)}\n`); // false
-document.write(`${checkForSpam(textThird)}\n`); //false
-document.write(`${checkForSpam(textFourth)}\n`); // true
+document.write(`${checkForSpam(TEXT)}\n`); //true
+document.write(`${checkForSpam(TEXTSECOND)}\n`); // false
+document.write(`${checkForSpam(TEXTTHRID)}\n`); //false
+document.write(`${checkForSpam(TEXTFOURTH)}\n`); // true

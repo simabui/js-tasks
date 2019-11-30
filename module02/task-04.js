@@ -1,17 +1,19 @@
 "use strict";
 
-const messageFirst = "Curabitur ligula sapien, tincidunt non.";
-const messageSecond = "Vestibulum facilisis, purus nec pulvinar iaculis.";
-const messageThird = "Curabitur ligula sapien.";
-const messageFourth =
+const MESSAGEFIRST = "Curabitur ligula sapien, tincidunt non.";
+const MESSAGESECOND = "Vestibulum facilisis, purus nec pulvinar iaculis.";
+const MESSAGETHIRD = "Curabitur ligula sapien.";
+const MESSAGEFOURTH =
   "Nunc sed turpis. Curabitur a felis in nunc fringilla tristique.";
 
 const formatString = string => {
+  let stringArr;
   let newString;
+
   if (string.length > 40) {
-    newString = [...string].slice(0, 40); //cut string to 40 chars
-    newString.push("...");
-    newString = newString.join("");
+    stringArr = [...string].slice(0, 40); //cut string to 40 chars
+    stringArr.push("...");
+    newString = stringArr.join("");
     return newString;
   } else {
     return string;
@@ -19,8 +21,8 @@ const formatString = string => {
 };
 
 console.log(
-  `${formatString(messageFirst)}\n`,
-  `${formatString(messageSecond)}\n`,
-  `${formatString(messageThird)}\n`,
-  `${formatString(messageFourth)}\n`
+  `${formatString(MESSAGEFIRST)}\n`,
+  `${formatString(MESSAGESECOND)}\n`,
+  `${formatString(MESSAGETHIRD)}\n`,
+  `${formatString(MESSAGEFOURTH)}\n`
 );

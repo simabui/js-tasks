@@ -1,7 +1,7 @@
 "use strict";
 
 let input;
-const numbers = [];
+const NUMBERS = [];
 let total;
 
 const calcInput = function() {
@@ -15,9 +15,10 @@ const calcInput = function() {
       continue; // skip
     }
 
-    numbers.push(Number(input)); // insert input to array
-    total = numbers.reduce((acc, number) => acc + number, 0);
+    NUMBERS.push(Number(input)); // insert input to array
+    total = NUMBERS.reduce((acc, number) => acc + number, 0);
   }
+
   return total;
 };
 

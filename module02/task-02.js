@@ -1,9 +1,8 @@
 "use strict";
 
-const message = "Donec orci lectus aliquam est";
+const MESSAGE = "Donec orci lectus aliquam est";
 
-const calcEngravingPrice = (str, pricePerWord) => {
-  return str.split(" ").length * pricePerWord;
-};
+const calcEngravingPrice = (str, pricePerWord) =>
+  str.split(" ").length * pricePerWord;
 
-alert(calcEngravingPrice(message, 40)); //200
+alert(calcEngravingPrice(MESSAGE, 40)); //200

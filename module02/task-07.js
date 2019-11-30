@@ -1,15 +1,12 @@
 "use strict";
 
-const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
+const LOGINS = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
 
-const isLogValid = login => {
-  // login not valid if less than 4 and more 16 chars
-  return login.length < 4 || login.length > 16 ? false : true;
-};
+const isLogValid = login =>
+  login.length < 4 || login.length > 16 ? false : true;
+// login not valid if less than 4 and more 16 chars
 
-const isLogUnique = (allLogins, login) => {
-  return allLogins.includes(login);
-};
+const isLogUnique = (allLogins, login) => allLogins.includes(login);
 
 const addLogin = (allLogins, login) => {
   let isValid = isLogValid(login);
@@ -33,8 +30,8 @@ const addLogin = (allLogins, login) => {
   }
 };
 
-addLogin(logins, "Ajax"); // 'Success'
-addLogin(logins, "robotGoogles"); // 'Error!Login already taken'
-addLogin(logins, "Zod"); // 'Error! Login must be in 4-16 chars range'
-addLogin(logins, "jqueryisextremelyfast"); // 'Error! Login must be in 4-16 chars range'
-addLogin(logins, "Ajax");
+addLogin(LOGINS, "Ajax"); // 'Success'
+addLogin(LOGINS, "robotGoogles"); // 'Error!Login already taken'
+addLogin(LOGINS, "Zod"); // 'Error! Login must be in 4-16 chars range'
+addLogin(LOGINS, "jqueryisextremelyfast"); // 'Error! Login must be in 4-16 chars range'
+addLogin(LOGINS, "Ajax"); // 'Error!Login already taken'
