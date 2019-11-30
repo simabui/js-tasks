@@ -5,10 +5,7 @@ const message = "The quick brown fox jumped over the lazy dog";
 const findLongWord = str => {
   const words = str.split(" ");
   const longestWord = words.reduce((prev, next) => {
-    if (prev.length < next.length) {
-      prev = next;
-    }
-    return prev;
+    return prev.length < next.length ? (prev = next) : prev;
   }, words[0]);
 
   return longestWord;

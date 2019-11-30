@@ -2,34 +2,23 @@
 
 let input;
 const numbers = [];
-let total = 0;
+let total;
 
 const calcInput = function() {
-	while (true) {
-		input = prompt("Input number");
-		let isString = isNaN(input); // check input value on NaN
-		let numInput = parseFloat(input); //  input to float number
-		if (input === null) {
-			if (numbers.length > 0) {
-				// check array not empty
-				for (let number of numbers) {
-					total = total + number; // sum arrays
-				}
-				return total;
-			} else {
-				return "Array is empty";
-			}
-			break;
-		}
+  while (input !== null) {
+    input = prompt("Input a number");
 
-		if (isString) {
-			// if input not num
-			alert("Incorrect value");
-			continue; // don't save in array
-		}
+    if (input === null) break;
 
-		numbers.push(numInput); // insert input to array
-	}
+    if (isNaN(input)) {
+      alert("Incorrect value");
+      continue; // skip
+    }
+
+    numbers.push(Number(input)); // insert input to array
+    total = numbers.reduce((acc, number) => acc + number, 0);
+  }
+  return total;
 };
 
 document.write(calcInput());

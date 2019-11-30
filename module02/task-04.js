@@ -9,10 +9,9 @@ const messageFourth =
 const formatString = string => {
   let newString;
   if (string.length > 40) {
-    string = string.split("").splice(0, 40); //cut string to 40 chars
-    string.push("...");
-    newString = string.join("");
-
+    newString = [...string].slice(0, 40); //cut string to 40 chars
+    newString.push("...");
+    newString = newString.join("");
     return newString;
   } else {
     return string;
