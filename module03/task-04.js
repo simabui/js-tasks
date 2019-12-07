@@ -1,29 +1,26 @@
 "use strict";
-"use strict";
-const countTotalSalary = function(employees) {
-	const salaries = Object.values(employees); // put in array object properties
-	let totalSalary = 0;
-
-	for (let salary of salaries) {
-		totalSalary += salary;
-	}
-
-	return totalSalary;
+const groupA = {
+  mango: 100,
+  poly: 150,
+  alfred: 80
 };
-document.write(countTotalSalary({}) + "<br>"); // 0
 
-document.write(
-	countTotalSalary({
-		mango: 100,
-		poly: 150,
-		alfred: 80
-	}) + "<br>"
-); // 330
+const groupB = {
+  kiwi: 200,
+  lux: 50,
+  chelsy: 150
+};
 
-document.write(
-	countTotalSalary({
-		kiwi: 200,
-		lux: 50,
-		chelsy: 150
-	}) + "<br>"
-); // 400
+const groupC = {};
+
+const countTotalSalary = function(employees) {
+  const salaries = Object.values(employees);
+  return salaries.reduce(
+    (totalSalary, employeeSalary) => totalSalary + employeeSalary,
+    0
+  );
+};
+
+document.write(`${countTotalSalary(groupA)}\n`); // 330
+document.write(`${countTotalSalary(groupB)}\n`); // 400
+document.write(`${countTotalSalary(groupC)}\n`); // 0
