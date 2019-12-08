@@ -21,22 +21,24 @@ const account = {
   transactions: [],
 
   generateID() {
-    const newID = Math.floor(Math.random() * 100);
-    return newID;
+    return this.transactions.length + 1;
   },
   /*
    * Метод отвечающий за добавление суммы к балансу
    * Создает объект транзакции и вызывает addTransaction
    */
   deposit(amount) {
-    this.balance += amount;
-    let newObj = {
-      //create new object
-      id: this.generateID(),
-      type: "deposit",
-      amount
-    };
-    this.addTransaction(newObj); // call object function and put object
+    if (amount > 0) {
+      this.balance += amount;
+      const newObj = {};
+      newObj.id = this.generateID();
+      newObj.type = "deposit";
+      newObj.amount = amount;
+
+      this.addTransaction(newObj); // call object function and put object
+    } else {
+      console.log(`Amount: ${amount} is incorrect`);
+    }
   },
 
   /*
@@ -47,19 +49,16 @@ const account = {
    * о том, что снятие такой суммы не возможно, недостаточно средств.
    */
   withdraw(amount) {
-    let leftOver;
     if (amount > this.getBalance()) {
-      //if withdraw more than balance than error
+      //if withdraw more than balance than errors
       console.log("Not enough money");
     } else {
-      leftOver = this.getBalance() - amount;
-      this.balance = leftOver;
-      let newObj = {
-        //create new object
-        id: this.generateID(),
-        type: "withdraw",
-        amount
-      };
+      this.balance = this.getBalance() - amount;
+      const newObj = {};
+      newObj.id = this.generateID();
+      newObj.type = "withdraw";
+      newObj.amount = amount;
+
       this.addTransaction(newObj);
     }
   },
@@ -100,17 +99,19 @@ const account = {
   }
 };
 
-account.deposit(1); //1
-account.deposit(2); //3
-account.deposit(3); //6
-account.deposit(4); //10
-account.deposit(5); //15
+account.deposit(100);
+account.deposit(123);
+account.deposit(32);
+account.deposit(322);
+account.deposit(-5);
 
-document.write(`Balance: ${account.balance}<br>`); //balance before withdraw
-account.withdraw(7);
+document.write(`Balance: ${account.balance}\n`);
+account.withdraw(70);
+account.withdraw(32);
+account.withdraw(22);
 document.write(
-  `Total of deposit incoming ${account.getTransactionTotal("deposit")}<br>`
-); //8
-document.write(`Balance after withdraw: ${account.balance}`); //balance after withdraw
-console.table(account.transactions); //history of all transactions
-console.table(account.getTransactionDetails("")); //details of transaction by id
+  `Total of deposit incoming ${account.getTransactionTotal("deposit")}\n`
+);
+document.write(`Balance after withdraw: ${account.balance}`);
+console.table(account.transactions);
+console.table(account.getTransactionDetails(8));
