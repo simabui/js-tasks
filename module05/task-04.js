@@ -1,23 +1,23 @@
 class StringBuilder {
-	constructor(value) {
-		this._value = value;
-	}
+  constructor(value) {
+    this._value = value;
+  }
 
-	get value() {
-		return this._value;
-	}
+  get value() {
+    return this._value;
+  }
 
-	append(str) {
-		this._value += str; //add string to the end
-	}
+  append(str) {
+    this._value += str;
+  }
 
-	prepend(str) {
-		this._value = str + this._value; //add string to the start
-	}
+  prepend(str) {
+    this._value = str + this._value;
+  }
 
-	pad(str) {
-		this._value = str + this._value + str; //add string to the start and end
-	}
+  pad(str) {
+    this._value = str + this._value + str;
+  }
 }
 
 const builder = new StringBuilder(".");
