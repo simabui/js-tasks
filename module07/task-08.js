@@ -3,7 +3,6 @@
 const controls = document.querySelector("#controls");
 const boxes = document.querySelector("#boxes");
 let inputValue;
-let boxesCollection = [];
 
 // Get Amount of Input
 const getAmount = ({ target }) => {
@@ -12,31 +11,26 @@ const getAmount = ({ target }) => {
 
 // CREATE BOXES
 const createBoxes = amount => {
+  let boxesCollection = [];
   if (amount > 100) {
     alert("too high number");
     return;
   }
+  let size = 30;
 
   for (let i = 0; i < amount; i++) {
-    let box = document.createElement("div");
+    const r = Math.round(Math.random() * 256);
+    const g = Math.round(Math.random() * 256);
+    const b = Math.round(Math.random() * 256);
+    let box = `<div style="width:${size}px; height:${size}px; background-color:rgb(${r},${g},${b});">`;
+    size += 10;
     boxesCollection.push(box);
-    console.log(boxesCollection);
-  }
-
-  for (let i = 0; i < boxesCollection.length; i++) {
-    const r = Math.random() * 256;
-    const g = Math.random() * 256;
-    const b = Math.random() * 256;
-    boxesCollection[i].style.width = "30px";
-    boxesCollection[i].style.height = "30px";
-    boxesCollection[i].style.backgroundColor = `rgb(${r},${g}, ${b})`;
-    boxes.append(boxesCollection[i]);
+    boxes.insertAdjacentHTML("beforeend", boxesCollection[i]);
   }
 };
 // DESTROY BOXES
 const destroyBoxes = () => {
   boxes.textContent = "";
-  boxesCollection = [];
 };
 
 controls.addEventListener("input", getAmount);

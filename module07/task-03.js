@@ -22,7 +22,7 @@ const addImage = arr => {
   const gallery = document.querySelector("#gallery");
 
   arr.map(({ url, alt }) => {
-    const imageMarkup = `<li><img src="${url}" alt="${alt}" ></li>`;
+    const imageMarkup = `<li><img src="${url}" alt="${alt}" >`;
     gallery.insertAdjacentHTML("beforeend", imageMarkup);
   });
 };
