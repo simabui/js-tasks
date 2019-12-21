@@ -41,11 +41,10 @@ console.log(getNamesSortedByFriendsCount(storage));
 // task-10
 const getSortedUniqueSkills = users => {
   let allSkills = users
-    .reduce((arr, { skills }) => {
-      arr.push(...skills);
-      return arr;
-    }, [])
+    .map(({ skills }) => skills)
+    .flat(1)
     .sort();
+
   return [...new Set(allSkills)];
 };
 console.log(getSortedUniqueSkills(storage));
