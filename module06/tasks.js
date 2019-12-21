@@ -1,63 +1,51 @@
 import storage from "./users.js";
 
 // task-1
-const getUserNames = users => users.map(user => user.name); //get name of all users from array
+const getUserNames = users => users.map(({ name }) => name);
+console.log(getUserNames(storage));
 // task-2
 const getUsersWithEyeColor = (users, color) =>
-  users.filter(user => user.eyeColor === color); // if object property equal parameter return object
+  users.filter(({ eyeColor }) => eyeColor === color);
+console.log(getUsersWithEyeColor(storage, "blue"));
 // task-3
-const getUsersWithGender = (users, gender) =>
-  users.filter(user => user.gender === gender).map(user => user.name); // same as task 2 with diff obj property
+const getUsersWithGender = (users, sex) =>
+  users.filter(({ gender }) => gender === sex).map(({ name }) => name);
+console.log(getUsersWithGender(storage, "male"));
 // task-4
-const getInactiveUsers = users => users.filter(user => !user.isActive); // if property false return object
+const getInactiveUsers = users => users.filter(({ isActive }) => !isActive);
+console.log(getInactiveUsers(storage));
 // task-5
-const getUSerWithMail = (users, mail) =>
-  users.find(user => user.email === mail); // if obj property equal parameter
+const getUSerWithMail = (users, address) =>
+  users.find(({ email }) => email === address);
+console.log(getUSerWithMail(storage, "shereeanthony@kog.com"));
 // task-6
 const getUserWithAge = (users, min, max) =>
-  users.filter(user => user.age > min && user.age < max); // get users in range by 2 param min and max
+  users.filter(({ age }) => age > min && age < max);
+console.log(getUserWithAge(storage, 30, 40));
 // task-7
 const calculateTotalBalance = users =>
-  users.reduce((total, user) => total + user.balance, 0); //sum all values in property
+  users.reduce((acc, { balance }) => acc + balance, 0);
+console.log(calculateTotalBalance(storage));
 // task-8
 const getUsersWithFriend = (users, friend) =>
-  users.filter(user => user.friends.includes(friend)).map(user => user.name); // check if in property-array includes
+  users
+    .filter(({ friends }) => friends.includes(friend))
+    .map(({ name }) => name);
+console.log(getUsersWithFriend(storage, "Goldie Gentry"));
 // task-9
 const getNamesSortedByFriendsCount = users =>
   users
     .sort((prev, next) => prev.friends.length - next.friends.length)
-    .map(user => user.name); // sort by the length of property-array in ASC
+    .map(({ name }) => name);
+console.log(getNamesSortedByFriendsCount(storage));
 // task-10
 const getSortedUniqueSkills = users => {
-  let skills = users
-    .reduce((arr, user) => {
-      arr.push(...user.skills);
+  let allSkills = users
+    .reduce((arr, { skills }) => {
+      arr.push(...skills);
       return arr;
-    }, []) //put all skills in new array
-    .map(skill => skill) // go trough all elems of array
-    .filter((skill, index, arr) => arr.indexOf(skill) === index) // filter out duplicates
+    }, [])
     .sort();
-  return skills;
+  return [...new Set(allSkills)];
 };
-
-/////// RESULTS //////////
-
-console.log(getUserNames(storage)); //get names of users
-
-console.log(getUsersWithEyeColor(storage, "blue")); //get users by eyes color
-
-console.log(getUsersWithGender(storage, "male")); //get users by gender
-
-console.log(getInactiveUsers(storage)); //get inActive users
-
-console.log(getUSerWithMail(storage, "shereeanthony@kog.com")); //get user by mail
-
-console.log(getUserWithAge(storage, 30, 40)); //get users by age
-
-console.log(calculateTotalBalance(storage)); //calc balance of users in total
-
-console.log(getUsersWithFriend(storage, "Goldie Gentry")); // get user by friend Goldie
-
-console.log(getNamesSortedByFriendsCount(storage)); //get users in order
-
-console.log(getSortedUniqueSkills(storage)); //sorted unique skills
+console.log(getSortedUniqueSkills(storage));
