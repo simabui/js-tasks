@@ -42,7 +42,7 @@ function showOriginal({ target }) {
   const description = target.alt;
 
   refs.jsLightBox.classList.add("is-open");
-  document.body.style.position = "fixed"; //lock body scroll
+  document.body.style.overflow = "hidden"; //lock body scroll
   lightboxImage.src = "";
   lightboxImage.src = original;
   lightboxImage.alt = description;
@@ -54,7 +54,7 @@ function showOriginal({ target }) {
 // close overlay on click button
 function closeButton() {
   refs.jsLightBox.classList.remove("is-open");
-  document.body.style.position = ""; //unlock body scroll
+  document.body.style.overflow = ""; //unlock body scroll
 
   window.removeEventListener("keydown", handleKeyDown);
   window.removeEventListener("keydown", handleKeyArrows);
@@ -86,7 +86,6 @@ function handleKeyArrows(e) {
   const current = orgImages.findIndex(({ src }) => src === lightboxImage.src);
 
   if (e.code === "ArrowRight") {
-    console.log(current);
     if (current === orgImages.length - 1) {
       lightboxImage.src = orgImages[0].src;
       lightboxImage.alt = orgImages[0].alt;
@@ -98,7 +97,6 @@ function handleKeyArrows(e) {
   }
 
   if (e.code === "ArrowLeft") {
-    console.log(current);
     if (current < 1) {
       lightboxImage.src = orgImages[orgImages.length - 1].src;
       lightboxImage.alt = orgImages[orgImages.length - 1].alt;
