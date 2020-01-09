@@ -1,0 +1,24 @@
+@include font-face(
+  Montserrat,
+  normal,
+  400,
+  '../fonts/montserrat-v14-latin-regular'
+);
+@include font-face(
+  Montserrat,
+  normal,
+  700,
+  '../fonts/montserrat-v14-latin-700'
+);
+@include font-face(
+  'Crimson Text',
+  normal,
+  400,
+  '../fonts/crimson-text-v10-latin-regular'
+);
+@include font-face(
+  'Crimson Text',
+  normal,
+  700,
+  '../fonts/crimson-text-v10-latin-700'
+);

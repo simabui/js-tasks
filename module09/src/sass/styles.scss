@@ -1,0 +1,20 @@
+//Utils
+@import "helpers/variables";
+@import "helpers/placeholders";
+@import "helpers/mixins";
+@import "helpers/smart-grid";
+//Base styles
+@import "base/normalize";
+@import "base/fonts";
+@import "base/base";
+.bigImage {
+  background-image: url("../images/mountains@1X.png");
+  background-size: cover;
+  height: 300px;
+}
+.smallImage {
+  background-image: url("../images/mac.png");
+  background-size: cover;
+  width: 50px;
+  height: 100px;
+}
