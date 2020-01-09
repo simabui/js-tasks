@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssUrlRelativePlugin = require("css-url-relative-plugin");
 
 module.exports = {
   module: {
@@ -17,6 +18,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({ filename: "css/styles.css" }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,

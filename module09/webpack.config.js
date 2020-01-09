@@ -20,15 +20,17 @@ module.exports = env =>
             exclude: /node_modules/,
             use: ["babel-loader"]
           },
+          // {
+          //   test: /\.(html)$/,
+          //   use: "html-loader"
+          // },
           {
-            test: /\.(html)$/,
-            use: "html-loader"
-          },
-          {
-            test: /\.pug$/,
-            loader: "pug-loader",
-            options: {
-              pretty: false
+            test: /\.(pug)$/,
+            use: {
+              loader: "pug-loader",
+              options: {
+                pretty: true
+              }
             }
           },
           {
