@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CssUrlRelativePlugin = require("css-url-relative-plugin");
+const ImageminPlugin = require("imagemin-webpack");
 
 module.exports = {
   module: {
@@ -18,6 +19,27 @@ module.exports = {
     ]
   },
   plugins: [
+    new ImageminPlugin({
+      bail: false, // Ignore errors on corrupted images
+      cache: true,
+      imageminOptions: {
+        plugins: [
+          ["gifsicle", { interlaced: true }],
+          ["jpegtran", { progressive: true }],
+          ["optipng", { optimizationLevel: 5 }],
+          [
+            "svgo",
+            {
+              plugins: [
+                {
+                  removeViewBox: false
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    }),
     new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({ filename: "css/styles.css" }),
     new OptimizeCssAssetsPlugin({
