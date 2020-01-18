@@ -34,6 +34,10 @@ module.exports = env =>
             }
           },
           {
+            test: /\.hbs$/,
+            use: "handlebars-loader"
+          },
+          {
             test: /\.(png|jpe?g|gif)$/i,
             use: [
               {
