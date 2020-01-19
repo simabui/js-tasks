@@ -1,40 +1,38 @@
 "use strict";
 const refs = {
-  start: document.querySelector('button[data-action="start"]'),
-  stop: document.querySelector('button[data-action="stop"]'),
-  body: document.querySelector("body")
+  days: document.querySelector('span[data-value="days"]'),
+  hours: document.querySelector('span[data-value="hours"]'),
+  mins: document.querySelector('span[data-value="mins"]'),
+  secs: document.querySelector('span[data-value="secs"]')
 };
 
-const colors = [
-  "#FFFFFF",
-  "#2196F3",
-  "#4CAF50",
-  "#FF9800",
-  "#009688",
-  "#795548"
-];
-
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-const timer = {
-  isActive: false,
-  changeColor() {
-    if (this.isActive) return;
-    this.isActive = true;
-
-    this.timerID = setInterval(() => {
-      const randomIndex = randomIntegerFromInterval(0, colors.length - 1);
-      refs.body.style.backgroundColor = colors[randomIndex];
-    }, 1000);
-  },
-
-  stopChange() {
-    clearInterval(this.timerID);
-    this.isActive = false;
+class CountdownTimer {
+  constructor({ selector, targetDate }) {
+    this.targetDate = targetDate;
+    this.refs = {
+      timer: document.querySelector(`${selector}`)
+    };
+    this.countTime();
   }
-};
 
-refs.start.addEventListener("click", timer.changeColor.bind(timer));
-refs.stop.addEventListener("click", timer.stopChange.bind(timer));
+  countTime() {
+    this.currentDate = Date.now();
+    let time = this.targetDate - this.currentDate;
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+    setInterval(() => {
+      refs.days.textContent = String(days);
+      refs.hours.textContent = String(hours);
+      refs.mins.textContent = String(mins);
+      refs.secs.textContent = String(secs);
+    }, 1000);
+  }
+}
+
+new CountdownTimer({
+  selector: "#timer-1",
+  targetDate: new Date("Jan 20, 2020")
+});
