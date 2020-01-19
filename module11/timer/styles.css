@@ -8,3 +8,11 @@ body {
 .field {
   font-size: 30px;
 }
+
+.error-message {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+  color: red;
+  display: none;
+}
