@@ -4,11 +4,12 @@ const food = ["Картошка", "Грибы", "Чеснок", "Помидор�
 
 const addIngredients = ingredients => {
   const menu = document.querySelector("#ingredients");
-  ingredients.map(ingredient => {
+  const edited = ingredients.map(ingredient => {
     const list = document.createElement("li");
     list.textContent = ingredient;
-    menu.append(list);
+    return list;
   });
+  menu.append(...edited);
 };
 
 addIngredients(food);
