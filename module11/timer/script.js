@@ -2,9 +2,9 @@
 
 class CountdownTimer {
   constructor({ selector, targetDate }) {
+    this.selector = selector;
     this.targetDate = targetDate;
     this.refs = {
-      timer: document.querySelector(`${selector}`),
       days: document.querySelector(`${selector} span[data-value="days"]`),
       hours: document.querySelector(`${selector} span[data-value="hours"]`),
       mins: document.querySelector(`${selector} span[data-value="mins"]`),
@@ -16,7 +16,11 @@ class CountdownTimer {
   countTime() {
     setInterval(() => {
       if (this.targetDate <= this.currentDate) {
-        document.querySelector(".error-message").style.display = "block";
+        document.querySelector(
+          ".error-message"
+        ).textContent = ` Error in Target Date of \"${this.selector.substring(
+          1
+        )}"\ `;
         return;
       }
       this.calcTime();
@@ -43,7 +47,7 @@ class CountdownTimer {
 
 new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Jan 20, 2020")
+  targetDate: new Date("Jan 21, 2020")
 });
 
 new CountdownTimer({
