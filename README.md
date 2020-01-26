@@ -10,5 +10,6 @@ task 7 - https://simabui.github.io/js-tasks/module07/#
 task 8 - https://simabui.github.io/js-tasks/module08/#
 task 10 - https://simabui.github.io/js-tasks/module10/dist/
 task 11 - https://simabui.github.io/js-tasks/module11/colorSwitch/
+
 https://simabui.github.io/js-tasks/module11/timer/
 https://simabui.github.io/js-tasks/module11/promise/
