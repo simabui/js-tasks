@@ -1,6 +1,7 @@
 # To see result of works, go to direct links of each tasks(open Dev console)
 
 task 1 - https://simabui.github.io/js-tasks/module01/#
+
 task 2 - https://simabui.github.io/js-tasks/module02/#
 task 3 - https://simabui.github.io/js-tasks/module03/#
 task 4 - https://simabui.github.io/js-tasks/module04/#
