@@ -13,13 +13,15 @@ refs.input.addEventListener("input", debounce(handlerInput, 500));
 function handlerInput(e) {
   const input = e.target.value;
 
-  fetching.fetchCountries(input).then(country => {
-    if (country.length > 1) {
-      buildMarkUp(countriesTemplate(country));
-    } else {
-      buildMarkUp(countryTemplate(country));
-    }
-  });
+  if (input.length >= 1) {
+    fetching.fetchCountries(input).then(country => {
+      if (country.length > 1) {
+        buildMarkUp(countriesTemplate(country));
+      } else {
+        buildMarkUp(countryTemplate(country));
+      }
+    });
+  }
 }
 
 function buildMarkUp(data) {
