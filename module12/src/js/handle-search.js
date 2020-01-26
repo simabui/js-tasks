@@ -1,5 +1,6 @@
 import fetching from "./countries-service.js";
 import countriesTemplate from "../templates/countries-temp.hbs";
+import countryTemplate from "../templates/country-temp.hbs";
 import debounce from "../../node_modules/lodash.debounce";
 
 const refs = {
@@ -13,9 +14,11 @@ function handlerInput(e) {
   const input = e.target.value;
 
   fetching.fetchCountries(input).then(country => {
-    const markUp = countriesTemplate(country);
-    markUp;
-    buildMarkUp(markUp);
+    if (country.length > 1) {
+      buildMarkUp(countriesTemplate(country));
+    } else {
+      buildMarkUp(countryTemplate(country));
+    }
   });
 }
 
