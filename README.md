@@ -23,3 +23,5 @@ module 11 - https://simabui.github.io/js-tasks/module11/colorSwitch/
 https://simabui.github.io/js-tasks/module11/timer/
 
 https://simabui.github.io/js-tasks/module11/promise/
+
+module 12 - https://simabui.github.io/js-tasks/module12/dist/
