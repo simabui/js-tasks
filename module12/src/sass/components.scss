@@ -5,15 +5,53 @@
   padding-top: 20px;
 
   &__input {
-    border: 1px solid #000000;
-    width: 500px;
+    border: 1px solid #7e7979;
+    width: 1200px;
     height: 34px;
-    padding: 5px;
-    font-size: 20px;
+    padding: 30px;
+    font-size: 35px;
     outline: none;
+    border-radius: 5px;
   }
 
   &__info {
     margin-top: 20px;
+  }
+
+  &__list {
+    list-style-type: none;
+    font-size: 50px;
+  }
+}
+
+.country {
+  display: block;
+  &__data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__image {
+    width: 429px;
+  }
+  &__description {
+    font-size: 40px;
+    list-style-type: none;
+    li {
+      margin-bottom: 60px;
+    }
+  }
+  &__title {
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__language {
+    list-style-type: disc;
+    li {
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
   }
 }

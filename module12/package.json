@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "handlebars": "^4.7.2",
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "^4.0.8",
+    "pnotify": "^4.0.0"
   }
 }
