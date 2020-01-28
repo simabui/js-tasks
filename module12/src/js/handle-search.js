@@ -2,6 +2,7 @@ import fetching from "./countries-request.js";
 import countriesTemplate from "../templates/countries-temp.hbs";
 import countryTemplate from "../templates/country-temp.hbs";
 import debounce from "../../node_modules/lodash.debounce";
+import { alert } from "./notify-alert";
 
 const refs = {
   input: document.querySelector("#country-search"),
@@ -15,6 +16,10 @@ function handlerInput(e) {
 
   if (input.length >= 1) {
     fetching.fetchCountries(input).then(country => {
+      if (country.length > 10) {
+        alert();
+      }
+
       if (country.length > 1) {
         const countriesList = countriesTemplate(country);
         buildMarkUp(countriesList);
