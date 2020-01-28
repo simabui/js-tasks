@@ -1,38 +1,15 @@
 "use strict";
 import images from "./gallery-items.js";
-
-const refs = {
-  jsGallery: document.querySelector(".js-gallery"),
-  jsLightBox: document.querySelector(".js-lightbox"),
-  lightboxOverlay: document.querySelector(".lightbox__content"),
-  button: document.querySelector('button[data-action="close-lightbox"]')
-};
-// Render Images
-(function(storage) {
-  const renderImages = image => {
-    const imageMarkup = `
-    <li class="gallery__item">
-      <a class="gallery__link" href="#">
-        <img
-          class="gallery__image"
-          src="${image.preview}"
-          data-source="${image.original}"
-          alt="${image.description}"
-        />
-      </a>
-    </li>`;
-
-    refs.jsGallery.insertAdjacentHTML("beforeend", imageMarkup);
-  };
-
-  return storage.map(renderImages);
-})(images);
+import { renderImages } from "./renderImages.js";
+import { refs } from "./refs.js";
 
 refs.jsGallery.addEventListener("click", showOriginal); //show big image
 refs.button.addEventListener("click", closeButton); //close on button
 refs.lightboxOverlay.addEventListener("click", handleOverlay); //close on overlay
 
 const lightboxImage = document.querySelector(".lightbox__image");
+// Render
+renderImages(images);
 
 // show original image in overlay
 function showOriginal({ target }) {
@@ -82,28 +59,32 @@ function handleKeyArrows(e) {
       alt: image.alt
     });
   }
-
-  const current = orgImages.findIndex(({ src }) => src === lightboxImage.src);
-
+  const base = {
+    current: orgImages.findIndex(({ src }) => src === lightboxImage.src),
+    moveForward() {
+      if (this.current === orgImages.length - 1) {
+        lightboxImage.src = orgImages[0].src;
+        lightboxImage.alt = orgImages[0].alt;
+      } else {
+        lightboxImage.src = orgImages[this.current + 1].src;
+        lightboxImage.alt = orgImages[this.current + 1].alt;
+      }
+    },
+    moveBack() {
+      if (this.current === 0) {
+        lightboxImage.src = orgImages[orgImages.length - 1].src;
+        lightboxImage.alt = orgImages[orgImages.length - 1].alt;
+      } else {
+        lightboxImage.src = orgImages[this.current - 1].src;
+        lightboxImage.alt = orgImages[this.current - 1].alt;
+      }
+    }
+  };
   if (e.code === "ArrowRight") {
-    if (current === orgImages.length - 1) {
-      lightboxImage.src = orgImages[0].src;
-      lightboxImage.alt = orgImages[0].alt;
-    }
-    if (current < orgImages.length - 1) {
-      lightboxImage.src = orgImages[current + 1].src;
-      lightboxImage.alt = orgImages[current + 1].alt;
-    }
+    base.moveForward();
   }
 
   if (e.code === "ArrowLeft") {
-    if (current < 1) {
-      lightboxImage.src = orgImages[orgImages.length - 1].src;
-      lightboxImage.alt = orgImages[orgImages.length - 1].alt;
-    }
-    if (current !== 0) {
-      lightboxImage.src = orgImages[current - 1].src;
-      lightboxImage.alt = orgImages[current - 1].alt;
-    }
+    base.moveBack();
   }
 }
