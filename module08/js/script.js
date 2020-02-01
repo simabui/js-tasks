@@ -2,6 +2,7 @@
 import images from "./gallery-items.js";
 import { renderImages } from "./renderImages.js";
 import { refs } from "./refs.js";
+import { handleKeyArrows } from "./handleArrows.js";
 
 refs.jsGallery.addEventListener("click", showOriginal); //show big image
 refs.button.addEventListener("click", closeButton); //close on button
@@ -48,43 +49,4 @@ function handleOverlay(e) {
 function handleKeyDown(e) {
   if (e.code !== "Escape") return;
   closeButton();
-}
-
-function handleKeyArrows(e) {
-  const galleryImages = document.querySelectorAll(".gallery__image");
-  const orgImages = [];
-  for (let image of galleryImages) {
-    orgImages.push({
-      src: image.dataset.source,
-      alt: image.alt
-    });
-  }
-  const base = {
-    current: orgImages.findIndex(({ src }) => src === lightboxImage.src),
-    moveForward() {
-      if (this.current === orgImages.length - 1) {
-        lightboxImage.src = orgImages[0].src;
-        lightboxImage.alt = orgImages[0].alt;
-      } else {
-        lightboxImage.src = orgImages[this.current + 1].src;
-        lightboxImage.alt = orgImages[this.current + 1].alt;
-      }
-    },
-    moveBack() {
-      if (this.current === 0) {
-        lightboxImage.src = orgImages[orgImages.length - 1].src;
-        lightboxImage.alt = orgImages[orgImages.length - 1].alt;
-      } else {
-        lightboxImage.src = orgImages[this.current - 1].src;
-        lightboxImage.alt = orgImages[this.current - 1].alt;
-      }
-    }
-  };
-  if (e.code === "ArrowRight") {
-    base.moveForward();
-  }
-
-  if (e.code === "ArrowLeft") {
-    base.moveBack();
-  }
 }
