@@ -1,3 +1,24 @@
 .stats {
   display: flex;
 }
+.gallery {
+  max-width: 1200px;
+  margin: 10px auto;
+}
+.search-form {
+  margin-top: 20px;
+  text-align: center;
+
+  & input {
+    width: 500px;
+    height: 50px;
+    border: 1px solid #000000;
+    font-size: 30px;
+  }
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+  outline: none;
+}
