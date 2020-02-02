@@ -9,7 +9,6 @@ const options = {
   itemSelector: ".photo-card",
   percentPosition: true,
   transitionDuration: "0.3s"
-  // gutter: 2
 };
 
 export function renderTemplate() {
@@ -18,6 +17,7 @@ export function renderTemplate() {
     const block = collectionTemplate(obj);
     buildMarkUp(block);
     cascadeImages();
+    refs.loadButton.style.display = "block";
   });
 }
 
@@ -25,7 +25,7 @@ function buildMarkUp(data) {
   refs.gallery.insertAdjacentHTML("beforeend", data);
 }
 
-// Masontry plugin
+// Masonry plugin
 function cascadeImages() {
   const msnry = new Mansory(refs.gallery, options);
 

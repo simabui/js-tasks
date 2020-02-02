@@ -8,6 +8,11 @@
   backdrop-filter: blur(4px);
   justify-content: space-around;
   display: none;
+
+  &-item {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .container {
@@ -22,8 +27,9 @@
     width: 100%;
     padding: 5px;
     height: 50px;
-    border: 1px solid #000000;
+    border: 1px solid #797575;
     font-size: 30px;
+    border-radius: 5px;
   }
 }
 
@@ -33,6 +39,8 @@
   display: block;
   margin: 0 auto;
   outline: none;
+  cursor: pointer;
+  display: none;
 }
 
 .gallery-width,

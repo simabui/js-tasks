@@ -1,6 +1,7 @@
 import fetching from "./apiService.js";
 import { renderTemplate } from "./fetch-template.js";
 import { showOverlay } from "./light-box.js";
+import debounce from "../../node_modules/lodash.debounce";
 
 export const refs = {
   input: document.querySelector("#search-form"),
@@ -9,7 +10,7 @@ export const refs = {
 };
 
 refs.input.addEventListener("submit", handleSearch);
-refs.loadButton.addEventListener("click", handleLoad);
+refs.loadButton.addEventListener("click", debounce(handleLoad, 300));
 refs.gallery.addEventListener("click", handleOverlay);
 
 // Input event
