@@ -1,3 +1,5 @@
+import { alert } from "./notify-alert";
+
 const baseURL =
   "https://pixabay.com/api/?image_type=photo&orientation=horizontal&per_page=3";
 const KEY = "15109703-4df3afa39634f93d9eb19fc69";
@@ -19,7 +21,9 @@ export default {
     const params = `&q=${this.query}` + `&page=${this.page}` + `&key=${KEY}`;
     try {
       const request = await fetch(baseURL + params);
+      if (request.status === 200) alert();
       this.incrementPage();
+
       const response = await request.json();
       return response.hits;
     } catch (err) {

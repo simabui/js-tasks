@@ -1,8 +1,10 @@
 .stats {
+  background-color: rgba(128, 128, 128, 0.427);
   display: flex;
+  justify-content: space-between;
 }
 .gallery {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 10px auto;
 }
 .search-form {
@@ -18,8 +20,14 @@
 }
 
 .button {
+  position: relative;
   padding: 20px;
   display: block;
   margin: 0 auto;
   outline: none;
+}
+
+.gallery-width,
+.photo-card {
+  width: 33.3333%;
 }
