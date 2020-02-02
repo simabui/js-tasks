@@ -1,5 +1,3 @@
-import { refs } from "./handle-search";
-
 const baseURL =
   "https://pixabay.com/api/?image_type=photo&orientation=horizontal&per_page=3";
 const KEY = "15109703-4df3afa39634f93d9eb19fc69";

@@ -1,7 +1,5 @@
 import fetching from "./apiService.js";
-import collectionTemplate from "../templates/collections-temp.hbs";
-import debounce from "../../node_modules/lodash.debounce";
-import { alert } from "./notify-alert";
+import { fetchTemplate } from "./fetch-template.js";
 
 export const refs = {
   input: document.querySelector("#search-form"),
@@ -22,19 +20,12 @@ function handleSearch(e) {
   refs.gallery.innerHTML = "";
 }
 
-function buildMarkUp(data) {
-  refs.gallery.insertAdjacentHTML("beforeend", data);
-}
-
 function handleLoad(e) {
   e.preventDefault();
+  // const coords = window.innerHeight;
+  // window.scrollTo({
+  //   left: coords,
+  //   behavior: "smooth"
+  // });
   fetchTemplate();
-}
-
-function fetchTemplate() {
-  // fetch
-  fetching.fetchCountries().then(obj => {
-    const block = collectionTemplate(obj);
-    buildMarkUp(block);
-  });
 }
