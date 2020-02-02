@@ -45,6 +45,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.2",
     "handlebars": "^4.7.2",
     "lodash.debounce": "^4.0.8",
     "pnotify": "^4.0.0"

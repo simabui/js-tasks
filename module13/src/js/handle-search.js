@@ -1,5 +1,6 @@
 import fetching from "./apiService.js";
 import { fetchTemplate } from "./fetch-template.js";
+import { showOverlay } from "./light-box.js";
 
 export const refs = {
   input: document.querySelector("#search-form"),
@@ -9,6 +10,7 @@ export const refs = {
 
 refs.input.addEventListener("submit", handleSearch);
 refs.loadButton.addEventListener("click", handleLoad);
+refs.gallery.addEventListener("click", handleOverlay);
 
 function handleSearch(e) {
   e.preventDefault();
@@ -28,4 +30,10 @@ function handleLoad(e) {
   //   behavior: "smooth"
   // });
   fetchTemplate();
+}
+
+function handleOverlay({ target }) {
+  if (target.nodeName !== "IMG") return;
+  const image = target.dataset.large;
+  showOverlay(image);
 }

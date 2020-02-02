@@ -25,6 +25,7 @@ export default {
       this.incrementPage();
 
       const response = await request.json();
+      console.log(response);
       return response.hits;
     } catch (err) {
       throw err;
