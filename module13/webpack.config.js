@@ -11,7 +11,20 @@ module.exports = env =>
       entry: "./src/js/index.js",
       output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "js/bundle.js"
+        filename: "js/[name].[contenthash].js"
+      },
+      optimization: {
+        moduleIds: "hashed",
+        runtimeChunk: "single",
+        splitChunks: {
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendors",
+              chunks: "all"
+            }
+          }
+        }
       },
       module: {
         rules: [

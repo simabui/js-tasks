@@ -41,7 +41,10 @@ module.exports = {
       }
     }),
     new CssUrlRelativePlugin(),
-    new MiniCssExtractPlugin({ filename: "css/styles.css" }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash].css",
+      chunkFilename: "css/[name].[id].[contenthash].css"
+    }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
