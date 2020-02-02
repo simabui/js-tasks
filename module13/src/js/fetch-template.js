@@ -12,7 +12,7 @@ const options = {
   // gutter: 2
 };
 
-export function fetchTemplate() {
+export function renderTemplate() {
   // fetch
   fetching.fetchCountries().then(obj => {
     const block = collectionTemplate(obj);

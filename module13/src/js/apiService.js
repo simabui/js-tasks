@@ -1,4 +1,4 @@
-import { alert } from "./notify-alert";
+import { alert, success } from "./notify-alert";
 
 const baseURL =
   "https://pixabay.com/api/?image_type=photo&orientation=horizontal&per_page=3";
@@ -21,11 +21,12 @@ export default {
     const params = `&q=${this.query}` + `&page=${this.page}` + `&key=${KEY}`;
     try {
       const request = await fetch(baseURL + params);
-      if (request.status === 200) alert();
-      this.incrementPage();
-
       const response = await request.json();
-      console.log(response);
+
+      this.incrementPage();
+      // Pnotify
+      if (response.hits.length > 1) success();
+      if (response.hits.length < 1) alert();
       return response.hits;
     } catch (err) {
       throw err;

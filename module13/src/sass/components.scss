@@ -1,9 +1,16 @@
 .stats {
   background-color: rgba(128, 128, 128, 0.427);
-  display: flex;
-  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // blur background
+  backdrop-filter: blur(4px);
+  justify-content: space-around;
+  display: none;
 }
-.gallery {
+
+.container {
   max-width: 1300px;
   margin: 10px auto;
 }
@@ -12,7 +19,8 @@
   text-align: center;
 
   & input {
-    width: 500px;
+    width: 100%;
+    padding: 5px;
     height: 50px;
     border: 1px solid #000000;
     font-size: 30px;
@@ -30,4 +38,10 @@
 .gallery-width,
 .photo-card {
   width: 33.3333%;
+
+  &:hover {
+    .stats {
+      display: flex;
+    }
+  }
 }

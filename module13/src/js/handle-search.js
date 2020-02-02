@@ -1,5 +1,5 @@
 import fetching from "./apiService.js";
-import { fetchTemplate } from "./fetch-template.js";
+import { renderTemplate } from "./fetch-template.js";
 import { showOverlay } from "./light-box.js";
 
 export const refs = {
@@ -12,16 +12,19 @@ refs.input.addEventListener("submit", handleSearch);
 refs.loadButton.addEventListener("click", handleLoad);
 refs.gallery.addEventListener("click", handleOverlay);
 
+// Input event
 function handleSearch(e) {
   e.preventDefault();
 
   const input = e.currentTarget.elements.query.value;
   fetching.setQuery = input;
   fetching.resetPage();
-  fetchTemplate();
+  // Render
+  renderTemplate();
   refs.gallery.innerHTML = "";
 }
 
+// Button event
 function handleLoad(e) {
   e.preventDefault();
   // const coords = window.innerHeight;
@@ -29,11 +32,12 @@ function handleLoad(e) {
   //   left: coords,
   //   behavior: "smooth"
   // });
-  fetchTemplate();
+  renderTemplate();
 }
 
 function handleOverlay({ target }) {
   if (target.nodeName !== "IMG") return;
   const image = target.dataset.large;
+  // Display big image
   showOverlay(image);
 }
