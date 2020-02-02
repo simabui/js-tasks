@@ -16,19 +16,25 @@ function handleSearch(e) {
   e.preventDefault();
 
   const input = e.currentTarget.elements.query.value;
-  // fetch
-  fetching.fetchCountries(input).then(obj => {
-    const block = collectionTemplate(obj);
-    buildMarkUp(block);
-  });
+  fetching.setQuery = input;
+  fetching.resetPage();
+  fetchTemplate();
+  refs.gallery.innerHTML = "";
 }
 
 function buildMarkUp(data) {
-  refs.gallery.innerHTML = "";
   refs.gallery.insertAdjacentHTML("beforeend", data);
 }
 
 function handleLoad(e) {
   e.preventDefault();
-  console.log("test");
+  fetchTemplate();
+}
+
+function fetchTemplate() {
+  // fetch
+  fetching.fetchCountries().then(obj => {
+    const block = collectionTemplate(obj);
+    buildMarkUp(block);
+  });
 }
