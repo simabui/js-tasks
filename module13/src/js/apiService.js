@@ -19,6 +19,7 @@ export default {
 
   async fetchCountries() {
     const params = `&q=${this.query}` + `&page=${this.page}` + `&key=${KEY}`;
+
     try {
       const request = await fetch(baseURL + params);
       const response = await request.json();
