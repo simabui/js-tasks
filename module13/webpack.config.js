@@ -29,6 +29,10 @@ module.exports = env =>
       module: {
         rules: [
           {
+            test: /\.css$/,
+            use: ["style-loader", "css-loader", "postcss-loader"]
+          },
+          {
             test: /\.js$/,
             exclude: /node_modules/,
             use: ["babel-loader"]
@@ -37,15 +41,15 @@ module.exports = env =>
             test: /\.(html)$/,
             use: "html-loader"
           },
-          // {
-          //   test: /\.(pug)$/,
-          //   use: {
-          //     loader: "pug-loader",
-          //     options: {
-          //       pretty: true
-          //     }
-          //   }
-          // },
+          {
+            test: /\.(pug)$/,
+            use: {
+              loader: "pug-loader",
+              options: {
+                pretty: true
+              }
+            }
+          },
           {
             test: /\.hbs$/,
             use: "handlebars-loader"
@@ -70,6 +74,18 @@ module.exports = env =>
                 loader: "file-loader",
                 options: {
                   name: "fonts/[name].[ext]"
+                }
+              }
+            ]
+          },
+          {
+            test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            use: [
+              {
+                loader: "file-loader",
+                options: {
+                  name: "[name].[ext]",
+                  outputPath: "fonts/"
                 }
               }
             ]
