@@ -1,7 +1,7 @@
 import fetching from "./apiService.js";
 import { renderTemplate } from "./fetch-template.js";
 import { showOverlay } from "./light-box.js";
-import debounce from "../../node_modules/lodash.debounce";
+import debounce from "lodash.debounce";
 
 export const refs = {
   input: document.querySelector("#search-form"),

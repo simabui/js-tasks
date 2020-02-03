@@ -1,4 +1,4 @@
-import PNotify from "../../node_modules/pnotify/dist/es/PNotify.js";
+import PNotify from "pnotify/dist/es/PNotify.js";
 
 PNotify.defaults.height = "68px";
 PNotify.defaults.delay = 3000;
