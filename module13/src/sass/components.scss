@@ -24,12 +24,13 @@
   text-align: center;
 
   & input {
-    width: 100%;
+    width: 80%;
     padding: 5px;
     height: 50px;
     border: 1px solid #797575;
     font-size: 30px;
     border-radius: 5px;
+    outline: none;
   }
 }
 

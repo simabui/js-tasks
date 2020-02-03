@@ -9,15 +9,14 @@ export const refs = {
   loadButton: document.querySelector("#load")
 };
 
-refs.input.addEventListener("submit", handleSearch);
+refs.input.addEventListener("input", debounce(handleSearch, 500));
 refs.loadButton.addEventListener("click", debounce(handleLoad, 300));
 refs.gallery.addEventListener("click", handleOverlay);
 
 // Input event
 function handleSearch(e) {
   e.preventDefault();
-
-  const input = e.currentTarget.elements.query.value;
+  const input = e.target.value;
   fetching.setQuery = input;
   fetching.resetPage();
   // Render
