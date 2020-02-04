@@ -1,36 +1,58 @@
 import { alert, success } from "./notify-alert";
+import { refs } from "./handle-search";
+import imagesLoaded from "imagesloaded/imagesloaded.js";
+import Mansory from "masonry-layout";
+import InfiniteScroll from "infinite-scroll";
+import collectionTemplate from "../templates/collections-temp.hbs";
 
 const baseURL =
-  "https://pixabay.com/api/?image_type=photo&orientation=horizontal&per_page=3";
-const KEY = "15109703-4df3afa39634f93d9eb19fc69";
-
+  "https://cors-anywhere.herokuapp.com/https://pixabay.com/api/?image_type=photo&orientation=horizontal&per_page=3";
+const KEY = "&key=15109703-4df3afa39634f93d9eb19fc69";
+let input = "";
+export function recieveValue(value) {
+  return (input = value);
+}
 export default {
-  page: 1,
-  incrementPage() {
-    this.page += 1;
-  },
-  query: "",
-  set setQuery(string) {
-    this.query = string;
-  },
-  resetPage() {
-    this.page = 1;
-  },
+  fetchCountries() {
+    const msnryOptions = {
+      columnWidth: 33.3333,
+      itemSelector: ".photo-card",
+      percentPosition: true,
+      transitionDuration: "0.3s",
+      visibleStyle: { transform: "translateY(0)", opacity: 1 },
+      hiddenStyle: { transform: "translateY(100px)", opacity: 0 }
+    };
+    // Masonry
+    const msnry = new Mansory(refs.gallery, msnryOptions);
+    // Infinite scroll
+    const scrollOptions = {
+      responseType: "text",
+      history: false,
+      outlayer: msnry,
+      path() {
+        return `${baseURL} + ${KEY} + &q=${input} + &page=${this.pageIndex}`;
+      }
+    };
 
-  async fetchCountries() {
-    const params = `&q=${this.query}` + `&page=${this.page}` + `&key=${KEY}`;
+    const infScroll = new InfiniteScroll(refs.gallery, scrollOptions);
 
-    try {
-      const request = await fetch(baseURL + params);
-      const response = await request.json();
+    infScroll.on("load", response => {
+      if (input < 1) return;
 
-      this.incrementPage();
-      // Pnotify
-      if (response.hits.length > 1) success();
-      if (response.hits.length < 1) alert();
-      return response.hits;
-    } catch (err) {
-      throw err;
-    }
+      const images = JSON.parse(response);
+      console.log(images);
+      const markup = images.hits
+        .map(image => collectionTemplate(image))
+        .join("");
+
+      const placeholder = document.createElement("div");
+      placeholder.innerHTML = markup;
+      const parsedItems = placeholder.querySelectorAll(".photo-card");
+
+      infScroll.appendItems(parsedItems);
+    });
+
+    infScroll.loadNextPage();
+    imagesLoaded(refs.gallery).on("progress", () => msnry.layout());
   }
 };
