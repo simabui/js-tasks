@@ -38,9 +38,9 @@ export default {
 
     infScroll.on("load", response => {
       if (input < 1) return;
-
       const images = JSON.parse(response);
-      console.log(images);
+      if (response.status.length > 1) success();
+      if (response.status.length < 1) alert();
       const markup = images.hits
         .map(image => collectionTemplate(image))
         .join("");
@@ -51,7 +51,6 @@ export default {
 
       infScroll.appendItems(parsedItems);
     });
-
     infScroll.loadNextPage();
     imagesLoaded(refs.gallery).on("progress", () => msnry.layout());
   }

@@ -6,7 +6,7 @@ import "material-design-icons/iconfont/material-icons.css";
 PNotify.defaults.styling = "material";
 PNotify.defaults.icons = "material";
 PNotify.defaults.height = "68px";
-PNotify.defaults.delay = 3000;
+PNotify.defaults.delay = 1000;
 
 const SUCCESS = "Success request";
 const ALERT = "Not Found";
