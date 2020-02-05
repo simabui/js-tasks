@@ -18,9 +18,9 @@ export default {
       columnWidth: 33.3333,
       itemSelector: ".photo-card",
       percentPosition: true,
-      transitionDuration: "0.3s",
-      visibleStyle: { transform: "translateY(0)", opacity: 1 },
-      hiddenStyle: { transform: "translateY(100px)", opacity: 0 }
+      transitionDuration: "0.3s"
+      // visibleStyle: { transform: "translateY(0)", opacity: 1 },
+      // hiddenStyle: { transform: "translateY(100px)", opacity: 0 }
     };
     // Masonry
     const msnry = new Mansory(refs.gallery, msnryOptions);
@@ -30,7 +30,7 @@ export default {
       history: false,
       outlayer: msnry,
       path() {
-        return `${baseURL} + ${KEY} + &q=${input} + &page=${this.pageIndex}`;
+        return `${baseURL + KEY}` + `&q=${input}` + `&page=${this.pageIndex}`;
       }
     };
 
@@ -39,8 +39,8 @@ export default {
     infScroll.on("load", response => {
       if (input < 1) return;
       const images = JSON.parse(response);
-      if (response.status.length > 1) success();
-      if (response.status.length < 1) alert();
+      if (images.length > 1) success();
+      if (images.length < 1) alert();
       const markup = images.hits
         .map(image => collectionTemplate(image))
         .join("");
@@ -49,9 +49,11 @@ export default {
       placeholder.innerHTML = markup;
       const parsedItems = placeholder.querySelectorAll(".photo-card");
 
-      infScroll.appendItems(parsedItems);
+      imagesLoaded(parsedItems, () => {
+        infScroll.appendItems(parsedItems);
+        msnry.appended(parsedItems);
+      });
     });
     infScroll.loadNextPage();
-    imagesLoaded(refs.gallery).on("progress", () => msnry.layout());
   }
 };
