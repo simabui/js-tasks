@@ -8,7 +8,7 @@ PNotify.defaults.icons = "material";
 PNotify.defaults.height = "68px";
 PNotify.defaults.delay = 1000;
 
-const SUCCESS = "Success request";
+const SUCCESS = "Successful response";
 const ALERT = "Not Found";
 // success
 export const success = () => {
