@@ -7,16 +7,15 @@ export const refs = {
   gallery: document.querySelector(".gallery")
 };
 
-refs.input.addEventListener("submit", debounce(handleSearch, 500));
+refs.input.addEventListener("input", debounce(handleSearch, 500));
 refs.gallery.addEventListener("click", handleOverlay);
 document.querySelector("#load").addEventListener("click", handleReset);
 
 // Input event
 function handleSearch(e) {
-  if (e.target.nodeName !== "INPUT") return;
-
   e.preventDefault();
-  recieveValue(e.target.value);
+  const input = e.target.value;
+  recieveValue(input);
   fetchResponse();
 }
 
