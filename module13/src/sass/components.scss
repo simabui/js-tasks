@@ -3,15 +3,18 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -20px;
   // blur background
   backdrop-filter: blur(4px);
   justify-content: space-around;
-  display: none;
+  opacity: 0;
+  display: flex;
+  transition: all 0.2s linear;
 
   &-item {
     display: flex;
     align-items: center;
+    color: white;
   }
 }
 
@@ -29,7 +32,8 @@
     height: 50px;
     border: 1px solid #797575;
     font-size: 30px;
-    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid #000;
     outline: none;
   }
 }
@@ -64,7 +68,12 @@
 
   &:hover {
     .stats {
-      display: flex;
+      bottom: 0;
+      opacity: 1;
     }
   }
+}
+
+.material-icons {
+  margin-right: 5px;
 }
