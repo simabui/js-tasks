@@ -5,13 +5,13 @@
   padding-top: 20px;
 
   &__input {
-    border: 1px solid #7e7979;
-    width: 1200px;
+    border: none;
+    border-bottom: 1px solid #7e7979;
+    width: 80%;
     height: 34px;
-    padding: 30px;
+    padding: 30px 10px;
     font-size: 35px;
     outline: none;
-    border-radius: 5px;
   }
 
   &__info {

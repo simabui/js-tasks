@@ -1,8 +1,8 @@
 import fetching from "./countries-request.js";
 import countriesTemplate from "../templates/countries-temp.hbs";
 import countryTemplate from "../templates/country-temp.hbs";
-import debounce from "../../node_modules/lodash.debounce";
-import { alert } from "./notify-alert";
+import debounce from "lodash.debounce";
+import { error } from "./notify-alert";
 
 const refs = {
   input: document.querySelector("#country-search"),
@@ -15,19 +15,25 @@ function handlerInput(e) {
   const input = e.target.value;
 
   if (input.length >= 1) {
-    fetching.fetchCountries(input).then(country => {
-      if (country.length > 10) {
-        alert();
-      }
-
-      if (country.length > 1) {
-        const countriesList = countriesTemplate(country);
-        buildMarkUp(countriesList);
-      } else {
-        const countriesInfo = countryTemplate(country);
-        buildMarkUp(countriesInfo);
-      }
-    });
+    fetching
+      .fetchCountries(input)
+      // display error notify
+      .then(country => {
+        if (country.length > 10) {
+          error();
+          return;
+        }
+        //template list
+        if (country.length > 1) {
+          const countriesList = countriesTemplate(country);
+          buildMarkUp(countriesList);
+        } else {
+          //temlate unique
+          const countriesInfo = countryTemplate(country);
+          buildMarkUp(countriesInfo);
+        }
+      })
+      .catch(err => console.log(err));
   }
 }
 
