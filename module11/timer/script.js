@@ -8,7 +8,8 @@ class CountdownTimer {
       days: document.querySelector(`${selector} span[data-value="days"]`),
       hours: document.querySelector(`${selector} span[data-value="hours"]`),
       mins: document.querySelector(`${selector} span[data-value="mins"]`),
-      secs: document.querySelector(`${selector} span[data-value="secs"]`)
+      secs: document.querySelector(`${selector} span[data-value="secs"]`),
+      error: document.querySelector(".error-message")
     };
     this.countTime();
   }
@@ -16,11 +17,7 @@ class CountdownTimer {
   countTime() {
     setInterval(() => {
       if (this.targetDate <= this.currentDate) {
-        document.querySelector(
-          ".error-message"
-        ).textContent = ` Error in Target Date of \"${this.selector.substring(
-          1
-        )}"\ `;
+        this.refs.error.textContent = ` Error in Target Date of \"${this.selector}"\ `;
         return;
       }
       this.calcTime();
@@ -47,7 +44,7 @@ class CountdownTimer {
 
 new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Jan 21, 2025")
+  targetDate: new Date("Jan 21, 2021")
 });
 
 new CountdownTimer({
