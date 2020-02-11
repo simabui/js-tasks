@@ -1,6 +1,18 @@
-import { refs, Theme } from "./renderTemplate";
 import { saveToLocal } from "./localStorage";
 
+export const refs = {
+  jsMenu: document.querySelector(".js-menu"),
+  switcher: document.querySelector(".switch"),
+  body: document.querySelector("body"),
+  inputSwitcher: document.querySelector(".js-switch-input")
+};
+
+export const Theme = {
+  LIGHT: "light-theme",
+  DARK: "dark-theme"
+};
+
+// light by default;
 refs.body.classList.add(Theme.LIGHT);
 refs.switcher.addEventListener("change", onChange);
 

@@ -1,4 +1,4 @@
-import "./renderTemplate";
-import "./changeTheme";
 import "./localStorage";
+import "./changeTheme";
+import "./renderTemplate";
 import "./../sass/styles.scss";

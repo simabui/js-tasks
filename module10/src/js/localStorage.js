@@ -1,4 +1,4 @@
-import { refs, Theme } from "./renderTemplate";
+import { refs, Theme } from "./changeTheme";
 
 export function saveToLocal() {
   try {
