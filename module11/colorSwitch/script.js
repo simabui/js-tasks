@@ -14,7 +14,7 @@ const colors = [
   "#795548"
 ];
 
-const randomIntegerFromInterval = (min, max) => {
+const randomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
@@ -24,12 +24,12 @@ const timer = {
     if (this.isActive) return;
     this.isActive = true;
 
-    this.timerID = setInterval(() => {
-      const randomIndex = randomIntegerFromInterval(0, colors.length - 1);
-      refs.body.style.backgroundColor = colors[randomIndex];
-    }, 1000);
+    this.timerID = setInterval(this.setColor, 1000);
   },
-
+  setColor() {
+    const randomIndex = randomInt(0, colors.length - 1);
+    refs.body.style.backgroundColor = colors[randomIndex];
+  },
   stopChange() {
     clearInterval(this.timerID);
     this.isActive = false;
