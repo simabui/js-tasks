@@ -1,7 +1,7 @@
 import fetching from "./countries-request.js";
 import countriesTemplate from "../templates/countries-temp.hbs";
 import countryTemplate from "../templates/country-temp.hbs";
-import debounce from "lodash.debounce";
+import { debounce } from "lodash";
 import { error } from "./notify-alert";
 
 const refs = {
