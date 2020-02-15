@@ -1,18 +1,17 @@
-const baseURL = "https://restcountries.eu/rest/v2/name/";
+import axios from "axios";
 
+const baseURL = "https://restcountries.eu/rest/v2/name/";
 const block = document.querySelector(".countries__info");
+
 export default {
   fetchCountries(country) {
-    const requestCountries = `${country}`;
-
-    return fetch(baseURL + requestCountries)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          block.textContent = "404 NOT FOUND";
+    return axios
+      .get(baseURL + country)
+      .then(response => response.data)
+      .catch(error => {
+        if (error.response) {
+          block.textContent = `${error.response.status} ${error.response.data.message} `;
         }
-      })
-      .catch(error => console.log(error));
+      });
   }
 };
