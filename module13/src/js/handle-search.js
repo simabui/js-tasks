@@ -1,10 +1,11 @@
-import { recieveValue, fetchResponse, resetButton } from "./apiService.js";
-import { showOverlay } from "./light-box.js";
-import debounce from "lodash.debounce";
+import { recieveValue, fetchResponse, resetButton } from "./apiService";
+import { showOverlay } from "./light-box";
+import { debounce } from "lodash";
 
 export const refs = {
   input: document.querySelector("#search-form"),
-  gallery: document.querySelector(".gallery")
+  gallery: document.querySelector(".gallery"),
+  wheel: document.querySelector(".loader-wheel")
 };
 
 refs.input.addEventListener("input", debounce(handleSearch, 500));
@@ -29,3 +30,15 @@ function handleOverlay({ target }) {
 function handleReset() {
   resetButton;
 }
+
+const io = new IntersectionObserver(onIntersection, { threshold: 1 });
+
+function onIntersection(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      window.scrollBy(0, -400);
+    }
+  });
+}
+
+io.observe(refs.wheel);

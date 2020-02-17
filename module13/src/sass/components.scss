@@ -44,14 +44,14 @@
   text-transform: uppercase;
   position: fixed;
   padding: 20px 50px;
-  display: block;
   outline: none;
   cursor: pointer;
   bottom: 20px;
-  left: -20px;
+  left: -200px;
   z-index: 9999;
   background-color: #e1e1e1;
   border-radius: 4px;
+  display: block;
   opacity: 0;
   transition: opacity 0.7s linear, left 0.7s linear, color 0.2s linear,
     background-color 0.2s linear;
@@ -76,4 +76,20 @@
 
 .material-icons {
   margin-right: 5px;
+}
+
+.isDisplayed {
+  opacity: 1;
+  left: 20px;
+}
+
+.scroll-error {
+  display: none;
+  text-align: center;
+  font-size: 30px;
+  color: #797575;
+}
+
+.isActive {
+  display: block;
 }
