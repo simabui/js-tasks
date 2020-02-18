@@ -25,3 +25,5 @@ https://simabui.github.io/js-tasks/module11/timer/
 https://simabui.github.io/js-tasks/module11/promise/
 
 module 12 - https://simabui.github.io/js-tasks/module12/dist/
+
+module 13 - https://simabui.github.io/js-tasks/module13/dist/index.html
