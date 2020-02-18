@@ -31,7 +31,6 @@ const scrollOptions = {
   responseType: "text",
   scrollThreshold: 100,
   history: false,
-  status: ".loader-wheel",
   path() {
     return (
       `${CORSPROXY + baseURL + KEY}` + `&q=${input}` + `&page=${this.pageIndex}`
@@ -41,19 +40,18 @@ const scrollOptions = {
 
 export function fetchResponse() {
   const msnry = new Mansory(grid, msnryOptions);
-
   const infScroll = new InfiniteScroll(grid, scrollOptions);
 
-  infScroll.on("load", (response, url) => {
+  infScroll.on("load", response => {
     const images = JSON.parse(response);
     const markup = images.hits.map(image => collectionTemplate(image)).join("");
-    console.log(url);
-    // Pnotify
+
     if (images.hits.length > 1) {
       success();
     }
     if (images.hits.length < 1) {
       alert();
+      //render error text
       loadError.classList.add("isActive");
     }
 
@@ -65,10 +63,10 @@ export function fetchResponse() {
       msnry.appended(parsedItems);
     });
   });
-
   infScroll.loadNextPage();
   button.classList.add("isDisplayed");
 }
+
 export function resetButton() {
   msnry.remove(parsedItems);
   // layout remaining item elements
